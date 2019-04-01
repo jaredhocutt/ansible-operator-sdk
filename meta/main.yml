@@ -1,0 +1,15 @@
+galaxy_info:
+  role_name: operator_sdk
+  author: Jared Hocutt
+  description: Installs Operator SDK.
+
+  license: BSD
+
+  min_ansible_version: 2.6
+
+  platforms:
+  - name: Fedora
+    versions:
+    - 27
+    - 28
+

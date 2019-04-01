@@ -1,0 +1,21 @@
+---
+
+- block:
+    - name: Get latest release of operator-sdk
+      uri:
+        url: https://api.github.com/repos/operator-framework/operator-sdk/releases/latest
+      register: operator_sdk_latest_release
+
+    - name: Set operator_sdk_version to latest release
+      set_fact:
+        operator_sdk_version: "{{ operator_sdk_latest_release.json.tag_name }}"
+  when: operator_sdk_version == 'latest'
+
+- name: Download and install operator-sdk
+  get_url:
+    url: "{{ operator_sdk_download_url }}"
+    dest: "{{ operator_sdk_binary_path }}"
+    owner: root
+    group: root
+    mode: 0755
+  become: yes
